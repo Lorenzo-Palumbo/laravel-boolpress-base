@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
         dd($posts);
-        return view('welcome');
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -38,7 +38,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $post = new Post;
+        $post->fill($data);
+        $post->save();
     }
 
     /**

@@ -16,9 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
-            $table->text('image');
+            $table->string('image')->default('https://picsum.photos/200/300');
             $table->text('body');
+            $table->boolean('published')->default(0);
             $table->string('author', 100);
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }
