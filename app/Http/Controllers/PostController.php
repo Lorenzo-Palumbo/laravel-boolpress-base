@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        dd($posts);
+        // dd($posts);
         return view('posts.index', compact('posts'));
     }
 
@@ -39,9 +39,17 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $request->validate([
+            'title' => 'required|string|max:150',
+            'body' => 'required',
+            'author' => 'required'
+        ]);
+
         $post = new Post;
         $post->fill($data);
         $post->save();
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -52,7 +60,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        if (empty($post)) {
+            abort('404');
+        }
+        return view('posts.show', compact('post'));
     }
 
     /**

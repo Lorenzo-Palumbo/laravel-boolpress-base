@@ -29,8 +29,10 @@
                 <input type="text" name="location" placeholder="Inserisci la tua posizione">
             </div>
             <div class="">
-                <label for="title">Pubblicato</label>
-                <input type="checkbox" name="published">
+                <label for="not-published">Non Pubblicato</label>
+                <input type="radio" name="published" value="0" id="not-published">
+                <label for="published">Pubblicato</label>
+                <input type="radio" name="published" value="1" id="published">
             </div>
             <div class="">
                 <input type="submit" name="" value="Salva">
